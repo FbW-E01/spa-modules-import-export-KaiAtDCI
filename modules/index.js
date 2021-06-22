@@ -45,7 +45,6 @@ differenceForm.addEventListener('change', event => {
 });
 
 // Aspect form
-const aspectForm = document.getElementById('aspect-form')
 const ratioInputElement1 = document.getElementById('ratio_1');
 const ratioInputElement2 = document.getElementById('ratio_2');
 const ratioInputElement3 = document.getElementById('ratio_result-width');
@@ -64,4 +63,3 @@ ratioInputElement4.addEventListener('change', event => {
     const newWidth = calculateAspectRatio(originalWidth, originalHeight, newHeight, 'h');
     ratioInputElement3.value = newWidth;
 })
-
