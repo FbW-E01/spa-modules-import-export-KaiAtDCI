@@ -45,21 +45,28 @@ differenceForm.addEventListener('change', event => {
 });
 
 // Aspect form
-const ratioInputElement1 = document.getElementById('ratio_1');
-const ratioInputElement2 = document.getElementById('ratio_2');
-const ratioInputElement3 = document.getElementById('ratio_result-width');
-const ratioInputElement4 = document.getElementById('ratio_result-height');
-ratioInputElement3.addEventListener('change', event => {
-    const originalWidth = ratioInputElement1.value;
-    const originalHeight = ratioInputElement2.value;
-    const newWidth = ratioInputElement3.value;
-    const newHeight = calculateAspectRatio(originalWidth, originalHeight, newWidth, 'w');
-    ratioInputElement4.value = newHeight;
-})
-ratioInputElement4.addEventListener('change', event => {
-    const originalWidth = ratioInputElement1.value;
-    const originalHeight = ratioInputElement2.value;
-    const newHeight = ratioInputElement4.value;
-    const newWidth = calculateAspectRatio(originalWidth, originalHeight, newHeight, 'h');
-    ratioInputElement3.value = newWidth;
-})
+const aspectForm = document.getElementById('aspect-form');
+const originalWidthElement = document.getElementById('ratio_1');
+const originalHeightElement = document.getElementById('ratio_2');
+const newWidthElement = document.getElementById('ratio_result-width');
+const newHeightElement = document.getElementById('ratio_result-height');
+
+aspectForm.addEventListener('change', event => {
+    const originalWidth = originalWidthElement.value;
+    const originalHeight = originalHeightElement.value;
+    switch (event.target) {
+        case newWidthElement:
+            const newWidth = newWidthElement.value;
+            const resultHeight = calculateAspectRatio(originalWidth, originalHeight, newWidth, 'w');
+            newHeightElement.value = resultHeight;
+            break;
+        case newHeightElement:
+            const newHeight = newHeightElement.value;
+            const resultWidth = calculateAspectRatio(originalWidth, originalHeight, newHeight, 'h');
+            newWidthElement.value = resultWidth;
+            break;
+        default:
+            newWidthElement. value = '';
+            newHeightElement. value = '';
+    }
+});
